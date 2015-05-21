@@ -1,0 +1,16 @@
+---
+title: "Link-list"
+ticket: "ABC-123"
+status: "draft"
+---
+.link-list
+    .link-list-head
+        strong I am a link list
+    .link-list-body
+        - links = ["Link 1", "Link 2", "Link 3"]
+        ul
+            - each l in links
+                li
+                    a(href="#")= l
+    .link-list-foot
+        a.link-list-more(href="#") Show more links

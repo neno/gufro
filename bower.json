@@ -1,0 +1,17 @@
+{
+  "name": "gufropro",
+  "version": "0.0.0",
+  "authors": [
+    "Nenad Brcic <neno@neno.ch>"
+  ],
+  "description": "Frontend Prototype Skeleton with GulpJS",
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

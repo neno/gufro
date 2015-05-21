@@ -1,0 +1,27 @@
+---
+title: 'Frontend Prototype'
+author: 'Nenad Brcic'
+date: '2015-19-05'
+ticket: 'nr-123'
+status: 'new'
+---
+
+extends layouts/default
+
+block content
+    // Print out a variable from front matter
+    h1= title
+
+    h2 TOC
+    ul
+        each t in templates
+            li
+                a(href= t.fileName)
+                    = t.title
+
+    h2 Team
+    // This is loaded from data/data.json
+    ul
+        each member in team
+            li= member.name
+
