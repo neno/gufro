@@ -27,7 +27,9 @@ module.exports = function () {
             },
             reloadDelay: 1000
         },
+        build: build,
         cssDir: cssDir,
+        html: tmp + '**/*.html',
         jade: [
             src + '**/*.jade',
             '!' + src + 'layouts/*.jade'
@@ -44,24 +46,8 @@ module.exports = function () {
             build: build + cssDir
         },
         src: src,
-        templates: src + 'templates/*.jade',
-        views: {
-            dev: tmp
-        }
+        templates: src + 'templates/*.jade'
     };
 
     return config;
 };
-
-
-//browsersync: {
-//    files: [build+'/**', '!'+build+'/**.map'] // Exclude map files
-//  , notify: false // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
-//  , open: true // Set to false if you don't like the browser window opening automatically
-//  , port: 3000 // Port number for the live version of the site; default: 3000
-//  , proxy: 'brandofsisters.dev' // Using a proxy instead of the built-in server as we have server-side rendering to do via WordPress
-////  , startPath: "/brand-of-sisters/"
-//  , watchOptions: {
-//      debounceDelay: 2000 // Delay for events called in succession for the same file/event
-//    }
-//  },

@@ -30,9 +30,11 @@ gulp.task('views', ['clean-views','index'], function() {
             return content.attributes;
         }))
         .pipe($.jade({pretty: true}))
-        .pipe(gulp.dest(config.views.dev));
+        .pipe(gulp.dest(config.tmp));
 });
 
 gulp.task('clean-views', function(done) {
-    del(config.views.dev + '**/*.html', done);
+    del(config.html.all, done);
 });
+
+
