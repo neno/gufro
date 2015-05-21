@@ -46,7 +46,8 @@ module.exports = function () {
             build: build + cssDir
         },
         src: src,
-        templates: src + 'templates/*.jade'
+        templates: src + 'templates/*.jade',
+        tmp: tmp
     };
 
     return config;

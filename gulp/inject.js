@@ -16,7 +16,6 @@ gulp.task('inject', ['styles', 'views'], function() {
     return gulp
         .src(config.html)
         .pipe(wiredep(options))
-        .pipe($.inject(gulp.src(config.js, {relative: true})))
         .pipe($.inject(gulp.src(config.js, {read: false}), {relative: true}))
         .pipe($.inject(gulp.src(config.styles.dev + '**/*.css', {read: false}), {relative: true}))
         .pipe(gulp.dest(config.tmp));

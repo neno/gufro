@@ -34,7 +34,7 @@ gulp.task('views', ['clean-views','index'], function() {
 });
 
 gulp.task('clean-views', function(done) {
-    del(config.html.all, done);
+    del(config.html, done);
 });
 
 
