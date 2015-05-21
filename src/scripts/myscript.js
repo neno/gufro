@@ -1,5 +1,12 @@
-function hello(name) {
-    var s = 'Welcome ' + name;
+;(function (win, doc, undefined) {
+    'use strict';
 
-    console.log(s);
-}
+    function hello(name) {
+        var s = 'Hello ' + name;
+        console.log(s);
+    }
+
+    var me = 'World';
+    hello(me);
+
+})(document, window);
