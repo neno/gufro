@@ -36,7 +36,7 @@ module.exports = function () {
             '!' + src + 'layouts/*.jade'
         ],
         js: src + jsDir + '**/*.js',
-        components: components,
+        components: components + '**/*.jade',
         sass: {
             app: src + cssDir + 'app.scss',
             all: src + '**/*.scss',

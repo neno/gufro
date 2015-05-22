@@ -17,7 +17,11 @@ gulp.task('views', ['clean-views','index'], function() {
             return file;
         }))
         .pipe($.data(function() {
-            var file = require('../data/index.json');
+            var file = require('../data/templates.json');
+            return file;
+        }))
+        .pipe($.data(function() {
+            var file = require('../data/components.json');
             return file;
         }))
         .pipe($.data(function() {

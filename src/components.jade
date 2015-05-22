@@ -1,6 +1,6 @@
 ---
-title: 'Templates'
-ticket: 'nr-123'
+title: 'Components'
+ticket: 'nr-456'
 status: 'new'
 ---
 
@@ -12,14 +12,8 @@ block content
 
     h2 TOC
     ul
-        each t in templates
+        each t in components
             li
                 a(href= t.fileName)
                     = t.title
-
-    h2 Team
-    // This is loaded from data/data.json
-    ul
-        each member in team
-            li= member.name
 

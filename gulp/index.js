@@ -6,29 +6,82 @@ var gulp = require('gulp'),
     fs = require('fs'),
     path = require('path');
 
-gulp.task('index', function() {
-    var toc = [];
-    var json = __dirname + '/../data/index.json';
+//gulp.task('index-templates', function() {
+//    var templates = [],
+//        components = [],
+//        json = __dirname + '/../data/index.json';
+//
+//    $.util.log('Populate /data/index.json with template data');
+//
+//    return gulp
+//        .src(config.templates)
+//        .pipe($.plumber())
+//        .pipe($.data(function(file) {
+//            var content = fm(String(file.contents));
+//            var f = getFilepath(file, 'templates/');
+//
+//            content.attributes.fileName = f;
+//            templates.push(content.attributes);
+//
+//            fs.writeFileSync(json, JSON.stringify({
+//                templates: templates
+//            }));
+//        }));
+//});
+//
+//gulp.task('index-components', function() {
+//    var components = [],
+//        json = __dirname + '/../data/components.json';
+//
+//    $.util.log('Populate /data/components.json with components data');
+//
+//    return gulp
+//        .src(config.components)
+//        .pipe($.plumber())
+//        .pipe($.data(function(file) {
+//            var content = fm(String(file.contents));
+//            var f = getFilepath(file, 'components/');
+//
+//            content.attributes.fileName = f;
+//            components.push(content.attributes);
+//
+//            fs.writeFileSync(json, JSON.stringify({
+//                components: components
+//            }));
+//        }));
+//});
 
-    $.util.log('Populate /data/index.json with template data');
+gulp.task('index', function() {
+    createIndex('templates');
+    createIndex('components');
+});
+
+function createIndex(type) {
+    var data = [],
+        jsonData = {},
+        json = __dirname + '/../data/' + type +'.json';
+
+    $.util.log('Populate /data/' + type + '.json with components data');
 
     return gulp
-        .src(config.templates)
+        .src(config[type])
         .pipe($.plumber())
         .pipe($.data(function(file) {
             var content = fm(String(file.contents));
-            var f = getFilepath(file);
+            var f = getFilepath(file, type + '/');
 
             content.attributes.fileName = f;
-            toc.push(content.attributes);
+            data.push(content.attributes);
 
-            fs.writeFileSync(json, JSON.stringify({templates: toc}));
+            jsonData[type] = data;
+
+            fs.writeFileSync(json, JSON.stringify(jsonData));
         }));
+}
 
-    function getFilepath(file) {
-        var f = file.path.split('/').pop();
-        f = 'templates/' + f;
-        f = f.replace('jade', 'html');
-        return f;
-    }
-});
+function getFilepath(file, prefix) {
+    var f = file.path.split('/').pop();
+    f = prefix + f;
+    f = f.replace('jade', 'html');
+    return f;
+}
