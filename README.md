@@ -8,3 +8,5 @@ Front End Prototype with GulpJS
  - on Windows use [chocolatey](https://chocolatey.org/) `choco install nodejs`
 
 ## Technologies
+
+Jade, SASS
