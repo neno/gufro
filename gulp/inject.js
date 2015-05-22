@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     config = require('../gulp.config')();
 
 // inject bower and custom JS and CSS into html files
-gulp.task('inject', ['styles', 'views'], function() {
+gulp.task('inject', ['styles', 'scripts', 'views'], function() {
     $.util.log('Wire up all bower and inject all custom CSS and JS');
 
     var options = {
@@ -16,7 +16,7 @@ gulp.task('inject', ['styles', 'views'], function() {
     return gulp
         .src(config.html)
         .pipe(wiredep(options))
-        .pipe($.inject(gulp.src(config.js, {read: false}), {relative: true}))
+        .pipe($.inject(gulp.src(config.scripts.dev + '**/*.js', {read: false}), {relative: true}))
         .pipe($.inject(gulp.src(config.styles.dev + '**/*.css', {read: false}), {relative: true}))
         .pipe(gulp.dest(config.tmp));
 });

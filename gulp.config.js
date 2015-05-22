@@ -4,6 +4,7 @@ module.exports = function () {
         build = './build/',
         data = './data/',
         cssDir = 'styles/',
+        jsDir = 'scripts/',
         components = src + 'components/';
 
     var config = {
@@ -34,12 +35,16 @@ module.exports = function () {
             src + '**/*.jade',
             '!' + src + 'layouts/*.jade'
         ],
-        js: src + '**/*.js',
+        js: src + jsDir + '**/*.js',
         components: components,
         sass: {
             app: src + cssDir + 'app.scss',
             all: src + '**/*.scss',
             components: components + '**/*.scss'
+        },
+        scripts: {
+            dev: tmp + jsDir,
+            build: build + jsDir
         },
         styles: {
             dev: tmp + cssDir,
