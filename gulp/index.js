@@ -21,15 +21,26 @@ function createIndex(context) {
     return gulp
         .src(config[context])
         .pipe($.plumber())
-        .pipe($.data(function(file) {
-            var content = fm(String(file.contents));
+        .pipe($.tap(function(file) {
             var f = getFilepath(file, context);
-
-            content.attributes.fileName = f;
-            data.push(content.attributes);
+            data.push(f);
+        }))
+        .on('end', function(file) {
             jsonData[context] = data;
+            $.util.log(data);
             fs.writeFileSync(json, JSON.stringify(jsonData));
-        }));
+        });
+//        .pipe($.filelist('filelist.json'))
+//        .pipe(gulp.dest('data'));
+//        .pipe($.data(function(file) {
+//            var content = fm(String(file.contents));
+//            var f = getFilepath(file, context);
+//
+//            content.attributes.fileName = f;
+//            data.push(content.attributes);
+//            jsonData[context] = data;
+//            fs.writeFileSync(json, JSON.stringify(jsonData));
+//        }));
 }
 
 function getFilepath(file, context) {

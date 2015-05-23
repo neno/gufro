@@ -1,1 +1,1 @@
-{"components":[{"title":"Link-list","ticket":"ABC-123","status":"draft","fileName":"components/link-list.html"}]}
+{"components":["components/link-list/link-list.html"]}
