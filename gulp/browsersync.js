@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     reload = browserSync.reload;
 
 
-gulp.task('browser-sync', ['inject'], function() {
+gulp.task('browser-sync', ['dev'], function() {
     $.util.log('Serve prototype and sync browsers');
 
     browserSync(config.browserSync);

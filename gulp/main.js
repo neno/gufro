@@ -6,6 +6,8 @@ var gulp = require('gulp'),
 
 gulp.task('serve', ['browser-sync']);
 
+gulp.task('dev', ['inject', 'fonts', 'images']);
+
 gulp.task('build');
 
 gulp.task('default');

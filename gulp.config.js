@@ -4,6 +4,8 @@ module.exports = function () {
         build = './build/',
         data = './data/',
         cssDir = 'styles/',
+        fontsDir = 'fonts/',
+        imgDir = 'images/',
         jsDir = 'scripts/',
         components = src + 'components/';
 
@@ -30,11 +32,22 @@ module.exports = function () {
         },
         build: build,
         cssDir: cssDir,
+        fonts: {
+            src: src + fontsDir,
+            dev: tmp + fontsDir,
+            build: build + fontsDir
+        },
         html: tmp + '**/*.html',
+        images: {
+            src: src + imgDir,
+            dev: tmp + imgDir,
+            build: build + imgDir
+        },
         jade: [
             src + '**/*.jade',
             '!' + src + 'layouts/*.jade'
         ],
+        indexFiles: src + '*.jade',
         js: src + jsDir + '**/*.js',
         components: components + '**/*.jade',
         sass: {

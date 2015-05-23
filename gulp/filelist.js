@@ -2,11 +2,10 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')({lazy: true}),
     config = require('../gulp.config')(),
     del = require('del'),
-    fm = require('front-matter'),
     fs = require('fs'),
     path = require('path');
 
-gulp.task('index', function() {
+gulp.task('filelist', function() {
     createIndex('templates');
     createIndex('components');
 });
@@ -23,24 +22,18 @@ function createIndex(context) {
         .pipe($.plumber())
         .pipe($.tap(function(file) {
             var f = getFilepath(file, context);
-            data.push(f);
+            var t = f.split('/').pop();
+            t = t.replace('-',' ').replace('.html','');
+            data.push({
+                fileName: f,
+                title: t
+            });
         }))
         .on('end', function(file) {
             jsonData[context] = data;
             $.util.log(data);
             fs.writeFileSync(json, JSON.stringify(jsonData));
         });
-//        .pipe($.filelist('filelist.json'))
-//        .pipe(gulp.dest('data'));
-//        .pipe($.data(function(file) {
-//            var content = fm(String(file.contents));
-//            var f = getFilepath(file, context);
-//
-//            content.attributes.fileName = f;
-//            data.push(content.attributes);
-//            jsonData[context] = data;
-//            fs.writeFileSync(json, JSON.stringify(jsonData));
-//        }));
 }
 
 function getFilepath(file, context) {
