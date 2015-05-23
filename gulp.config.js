@@ -33,13 +33,13 @@ module.exports = function () {
         build: build,
         cssDir: cssDir,
         fonts: {
-            src: src + fontsDir,
+            src: src + fontsDir + '**/*.*',
             dev: tmp + fontsDir,
             build: build + fontsDir
         },
         html: tmp + '**/*.html',
         images: {
-            src: src + imgDir,
+            src: src + imgDir + '**/*.*',
             dev: tmp + imgDir,
             build: build + imgDir
         },
