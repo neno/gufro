@@ -1,22 +1,29 @@
+- var title = 'Frontend Prototype';
+
 extends layouts/default
 
-block prototypeHead
-    a(href="components.html") Components
+block prototypeCSS
+    link(rel='stylesheet', href='/styles/prototype.css')
 
 block content
+    main#content.l-main(role="main")
+        .l-constrained.work
+            h1= title
 
-    h1 Templates
-
-    h2 TOC
-    ul
-        each t in templates
-            li
-                a(href= t.fileName)
-                    = t.title
-
-    h2 Team
-    // This is loaded from data/data.json
-    ul
-        each member in team
-            li= member.name
-
+            for sibling in nav.siblings
+                if sibling.children.length
+                    h1= sibling.title
+                    if sibling.children.length
+                        for section in sibling.children
+                            section
+                                h2= section.title
+                                if section.children.length
+                                ul
+                                    for view in section.children
+                                        if view.href
+                                            li
+                                                a(href=view.href)= view.title
+                                        if view.children.length
+                                            for f in view.children
+                                                li
+                                                    a(href=f.href)= f.title

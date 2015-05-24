@@ -7,13 +7,15 @@ module.exports = function () {
         fontsDir = 'fonts/',
         imgDir = 'images/',
         jsDir = 'scripts/',
-        components = src + 'components/';
+        components = src + 'components/',
+        nodeModules = './node_modules/',
+        bowerComponents = './bower_components';
 
     var config = {
-        // all js to vet
         alljs: [
-            src + '**/*.js',
-            data + '**/*.json',
+            '**/*.js',
+            '!' + nodeModules + '**/*.js',
+            '!' + bowerComponents + '**/*.js'
         ],
         bower: {
             json: require('./bower.json'),
@@ -32,12 +34,17 @@ module.exports = function () {
         },
         build: build,
         cssDir: cssDir,
+        data: [
+            data + 'data.json',
+            data + 'settings.json'
+        ],
         fonts: {
             src: src + fontsDir + '**/*.*',
             dev: tmp + fontsDir,
             build: build + fontsDir
         },
         html: tmp + '**/*.html',
+        indexFiles: src + '*.jade',
         images: {
             src: src + imgDir + '**/*.*',
             dev: tmp + imgDir,
@@ -47,13 +54,15 @@ module.exports = function () {
             src + '**/*.jade',
             '!' + src + 'layouts/*.jade'
         ],
-        indexFiles: src + '*.jade',
         js: src + jsDir + '**/*.js',
-        components: components + '**/*.jade',
         sass: {
             app: src + cssDir + 'app.scss',
             all: src + '**/*.scss',
-            components: components + '**/*.scss'
+            components: components + '**/*.scss',
+            main: [
+                src + cssDir + '*.scss',
+                '!' + src + cssDir + '_*.scss'
+            ]
         },
         scripts: {
             dev: tmp + jsDir,
@@ -64,7 +73,6 @@ module.exports = function () {
             build: build + cssDir
         },
         src: src,
-        templates: src + 'templates/*.jade',
         tmp: tmp
     };
 

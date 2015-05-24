@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 // Compiling SASS --> CSS
 gulp.task('styles', ['clean-styles', 'inject-components-styles'], function() {
     return gulp
-        .src(config.sass.app)
+        .src(config.sass.main)
         .pipe($.plumber())
         .pipe($.sass())
         .pipe($.autoprefixer({browsers: ['last 2 versions', '> 5%']}))

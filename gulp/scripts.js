@@ -3,23 +3,11 @@ var gulp = require('gulp'),
     args = require('yargs').argv,
     config = require('../gulp.config')();
 
-// Check scripts for errors and code style
-//gulp.task('scripts-lint', function() {
-//    return gulp
-//        .src(config.alljs)
-//        .pipe($.jscs())
-//        .pipe($.jshint())
-//        .pipe($.jshint.reporter('jshint-stylish', {verbose: true}));
-//});
-
 gulp.task('scripts-lint', function () {
     $.util.log('Analyzing source with JSHINT and JSCS');
 
     return gulp
-        .src([
-            config.src + '**/*.js',
-            './*.js'
-        ])
+        .src(config.alljs)
         .pipe($.if(args.verbose, $.print()))
         .pipe($.jscs())
         .pipe($.jshint())
@@ -27,7 +15,7 @@ gulp.task('scripts-lint', function () {
         .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('scripts', ['scripts-lint'], function () {
+gulp.task('scripts', function () {
     return gulp
         .src(config.js)
         .pipe(gulp.dest(config.scripts.dev));

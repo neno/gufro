@@ -1,35 +1,13 @@
 var gulp = require('gulp'),
     $ = require('gulp-load-plugins')({lazy: true}),
     config = require('../gulp.config')(),
-    del = require('del');
+    del = require('del'),
+    matter = require('jade-var-matter');
 
 gulp.task('views', ['clean-views'], function() {
     $.util.log('Compiling JADE views');
-    createViews('templates');
-    createViews('components');
-
-//    return gulp
-//        .src([
-//            config.templates,
-//            config.components
-//        ])
-//        .pipe($.plumber())
-//        .pipe($.data(function() {
-//            var file = require('../data/data.json');
-//            return file;
-//        }))
-//        .pipe($.data(function() {
-//            var file = require('../data/settings.json');
-//            return file;
-//        }))
-//        .pipe($.jade({pretty: true}))
-//        .pipe(gulp.dest(config.tmp));
-});
-
-
-function createViews(context) {
     return gulp
-        .src(config[context])
+        .src(config.jade)
         .pipe($.plumber())
         .pipe($.data(function() {
             var file = require('../data/data.json');
@@ -39,32 +17,10 @@ function createViews(context) {
             var file = require('../data/settings.json');
             return file;
         }))
-        .pipe($.jade({pretty: true}))
-        .pipe(gulp.dest(config.tmp + '/' + context));
-}
-
-gulp.task('index-files', ['filelist'], function() {
-    $.util.log('Compiling JADE index files');
-
-    return gulp
-        .src(config.indexFiles)
-        .pipe($.plumber())
-        .pipe($.data(function() {
-            var file = require('../data/templates.json');
-            return file;
+        .pipe($.data(function(file) {
+            return matter(String(file.contents));
         }))
-        .pipe($.data(function() {
-            var file = require('../data/components.json');
-            return file;
-        }))
-        .pipe($.data(function() {
-            var file = require('../data/settings.json');
-            return file;
-        }))
-        .pipe($.data(function() {
-            var file = require('../data/data.json');
-            return file;
-        }))
+        .pipe($.nav())
         .pipe($.jade({pretty: true}))
         .pipe(gulp.dest(config.tmp));
 });
