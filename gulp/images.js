@@ -11,13 +11,13 @@ gulp.task('images', ['clean-images-dev'], function () {
         .pipe(gulp.dest(config.images.dev));
 });
 
-gulp.task('images-build', ['clean-images-build'], function () {
+gulp.task('images-build', function () {
     $.util.log('Copying and compressing images');
 
     return gulp
         .src(config.images.src)
         .pipe($.imagemin({optimizationLevel: 4}))
-        .pipe(gulp.dest(config.images.dest));
+        .pipe(gulp.dest(config.images.build));
 });
 
 gulp.task('clean-images-dev', function(done) {

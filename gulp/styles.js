@@ -30,7 +30,7 @@ gulp.task('inject-components-styles', function() {
     };
 
     return gulp
-        .src(config.sass.app)
+        .src(config.sass.componentsFile)
         .pipe($.inject(moduleFiles, injectOptions))
         .pipe(gulp.dest(config.src + config.cssDir));
 });

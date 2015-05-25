@@ -10,3 +10,9 @@ bower_components
 ehthumbs.db
 Icon?
 Thumbs.db
+
+
+# Ignore the build dir
+build
+
+_3.components.scss

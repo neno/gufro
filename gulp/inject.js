@@ -20,11 +20,3 @@ gulp.task('inject', ['views', 'styles', 'scripts'], function() {
         .pipe($.inject(gulp.src(config.styles.dev + '**/*.css', {read: false}), {relative: true}))
         .pipe(gulp.dest(config.tmp));
 });
-
-// Collect, merge and inject optimized assets into HTML
-gulp.task('inject-optimized', ['inject'], function() {
-    return gulp
-        .src(config.html)
-        .pipe($.plumber())
-        .pipe(gulp.dest());
-});

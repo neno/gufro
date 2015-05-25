@@ -20,6 +20,6 @@ gulp.task('fonts-build', ['clean-fonts'], function () {
 });
 
 gulp.task('clean-fonts', function (done) {
-    var files = config.build + 'fonts/**/*.*';
+    var files = config.fonts.dev + '**/*.*';
     del(files, done);
 });

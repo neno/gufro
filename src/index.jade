@@ -2,9 +2,6 @@
 
 extends layouts/default
 
-block prototypeCSS
-    link(rel='stylesheet', href='/styles/prototype.css')
-
 block content
     main#content.l-main(role="main")
         .l-constrained.work
@@ -12,7 +9,6 @@ block content
 
             for sibling in nav.siblings
                 if sibling.children.length
-                    h1= sibling.title
                     if sibling.children.length
                         for section in sibling.children
                             section
@@ -22,8 +18,8 @@ block content
                                     for view in section.children
                                         if view.href
                                             li
-                                                a(href=view.href)= view.title
+                                                a(href = view.href)= view.title
                                         if view.children.length
                                             for f in view.children
                                                 li
-                                                    a(href=f.href)= f.title
+                                                    a(href = f.href)= f.title

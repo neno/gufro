@@ -59,6 +59,7 @@ module.exports = function () {
             app: src + cssDir + 'app.scss',
             all: src + '**/*.scss',
             components: components + '**/*.scss',
+            componentsFile: cssDir + '_3.components.scss',
             main: [
                 src + cssDir + '*.scss',
                 '!' + src + cssDir + '_*.scss'

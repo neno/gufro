@@ -8,6 +8,6 @@ gulp.task('serve', ['browser-sync']);
 
 gulp.task('dev', ['inject', 'fonts', 'images']);
 
-gulp.task('build');
+gulp.task('build', ['optimize', 'fonts-build', 'images-build']);
 
 gulp.task('default');
